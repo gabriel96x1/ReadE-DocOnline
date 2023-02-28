@@ -12,6 +12,12 @@
         android:theme="@style/Theme.ReadOnline"
         tools:targetApi="31">
         <activity
+            android:name=".ReaderActivityKt"
+            android:exported="false" />
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

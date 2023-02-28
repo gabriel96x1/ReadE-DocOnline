@@ -1,4 +1,4 @@
-package com.mutablestate.readonline
+package com.mutablestate.readonline.presentation.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
