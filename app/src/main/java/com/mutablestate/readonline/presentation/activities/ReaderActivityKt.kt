@@ -2,6 +2,7 @@ package com.mutablestate.readonline.presentation.activities
 
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.nfc.NfcAdapter
 import android.nfc.Tag
@@ -12,9 +13,13 @@ import android.util.Base64
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Scaffold
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
 import com.mutablestate.readonline.domain.utils.ImageUtil
 import com.mutablestate.readonline.domain.utils.ReadingUtils
+import com.mutablestate.readonline.presentation.view.HoldCloseDocScreen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -72,11 +77,13 @@ class ReaderActivityKt : ComponentActivity() {
     private var encodePhotoToBase64 = false
     private var passportNumberFromIntent = false
 
-    val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+    private lateinit var preferences : SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val dateOfBirth = intent.getStringExtra("birthDate")
         val dateOfExpiry = intent.getStringExtra("expiryDate")
@@ -98,7 +105,12 @@ class ReaderActivityKt : ComponentActivity() {
         }
 
         setContent {
-
+            Scaffold(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                it
+                HoldCloseDocScreen()
+            }
         }
     }
 

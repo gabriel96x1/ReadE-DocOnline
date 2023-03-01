@@ -2,6 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,15 +21,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReadOnline"
-        tools:targetApi="31">
+        tools:targetApi="33">
         <activity
-            android:name=".ReaderActivityKt"
+            android:name=".presentation.activities.ReaderActivityKt"
             android:exported="false" />
         <activity
-            android:name=".CameraActivity"
-            android:exported="false" />
+            android:name=".presentation.activities.CameraActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.activities.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ReadOnline">

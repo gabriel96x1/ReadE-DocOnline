@@ -40,11 +40,11 @@ class TextRecognitionProcessor(
         Log.d(TAG, "On-device Text detection successful")
         logExtrasForTesting(text)
         val bacKeyParts = text.toBacKeys()
-        val intent = Intent(graphicOverlay.getContext(), ReaderActivityKt::class.java)
+        val intent = Intent(graphicOverlay.context, ReaderActivityKt::class.java)
         intent.putExtra("docNum", bacKeyParts.docNum)
         intent.putExtra("birthDate", bacKeyParts.birthDate)
         intent.putExtra("expiryDate", bacKeyParts.expiryDate)
-        graphicOverlay.getContext().startActivity(intent)
+        graphicOverlay.context.startActivity(intent)
 
 
         //graphicOverlay.add(
@@ -52,7 +52,7 @@ class TextRecognitionProcessor(
     }
 
     override fun onFailure(e: Exception) {
-        Log.w(TAG, "Text detection failed.$e")
+        Log.w(TAG, "Text detection failed. $e")
     }
 
     companion object {
