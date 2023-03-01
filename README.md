@@ -1,7 +1,7 @@
 # Read E-Doc Online based on e-Passport NFC Reader in ICAO SC reading activity
 
 
-Android app that uses the NFC chip to communicate with an electronic Id, could be Passport Or ID.
+Android app that uses the NFC chip to communicate with an electronic Document, could be Passport Or ID.
 
 
 The following string extras can be set to allow pre-filling of input fields:
