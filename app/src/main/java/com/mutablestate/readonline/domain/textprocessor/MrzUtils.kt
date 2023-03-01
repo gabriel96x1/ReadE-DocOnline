@@ -1,8 +1,11 @@
 package com.mutablestate.readonline.domain.textprocessor
 
 import android.util.Log
+import androidx.compose.ui.text.toUpperCase
 import com.google.mlkit.vision.text.Text
 import com.mutablestate.readonline.domain.models.BacKeyParts
+import java.util.*
+import kotlin.collections.ArrayList
 
 fun Text.toBacKeys(): BacKeyParts {
     var docNum: String
@@ -16,11 +19,11 @@ fun Text.toBacKeys(): BacKeyParts {
 
     try {
         if (mrz.length < 33) {
-            lines.add(textBlocks[textBlocks.size - 3].text.replace(" ".toRegex(), ""))
-            lines.add(textBlocks[textBlocks.size - 2].text.replace(" ".toRegex(), ""))
-            lines.add(mrz.replace(" ".toRegex(), ""))
+            lines.add(textBlocks[textBlocks.size - 3].text.replace(" ".toRegex(), "").uppercase())
+            lines.add(textBlocks[textBlocks.size - 2].text.replace(" ".toRegex(), "").uppercase())
+            lines.add(mrz.replace(" ".toRegex(), "").uppercase())
         } else {
-            mrz = mrz.replace(" ".toRegex(), "")
+            mrz = mrz.replace(" ".toRegex(), "").uppercase()
             val builder = StringBuilder()
             for (i in 0 until mrz.length) {
                 if (mrz[i] == '\n') {
@@ -49,6 +52,8 @@ fun Text.toBacKeys(): BacKeyParts {
             birthDate = infoLine.substring(13, 19)
             expiryDate = infoLine.substring(21, 27)
         }
+
+        Log.d("MRZ Parts", "$docNum $birthDate $expiryDate")
 
         return BacKeyParts(
             docNum = docNum,

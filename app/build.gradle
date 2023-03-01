@@ -55,6 +55,7 @@ dependencies {
     implementation 'androidx.compose.material:material:1.2.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_ui_version"
 
     //CameraX
     implementation 'androidx.camera:camera-core:1.2.1'

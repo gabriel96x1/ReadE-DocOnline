@@ -1,5 +1,6 @@
 package com.mutablestate.readonline.presentation.activities
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,11 +16,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.mutablestate.readonline.domain.models.UserChipInfo
 import com.mutablestate.readonline.domain.utils.ImageUtil
 import com.mutablestate.readonline.domain.utils.ReadingUtils
 import com.mutablestate.readonline.presentation.view.HoldCloseDocScreen
+import com.mutablestate.readonline.presentation.view.ResultsScreen
+import com.mutablestate.readonline.presentation.viewmodel.ReaderViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -55,6 +61,7 @@ import java.security.spec.MGF1ParameterSpec
 import java.security.spec.PSSParameterSpec
 import java.util.*
 
+
 class ReaderActivityKt : ComponentActivity() {
 
     val TAG = ReaderActivityKt::class.java.simpleName
@@ -78,12 +85,15 @@ class ReaderActivityKt : ComponentActivity() {
     private var passportNumberFromIntent = false
 
     private lateinit var preferences : SharedPreferences
+    private lateinit var viewModel : ReaderViewModel
 
-
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        viewModel = ViewModelProvider(this).get(ReaderViewModel::class.java)
 
         val dateOfBirth = intent.getStringExtra("birthDate")
         val dateOfExpiry = intent.getStringExtra("expiryDate")
@@ -103,13 +113,20 @@ class ReaderActivityKt : ComponentActivity() {
                 .edit().putString(KEY_PASSPORT_NUMBER, passportNumber).apply()
             passportNumberFromIntent = true
         }
+        Log.e(TAG, "$passportNumber $dateOfExpiry $dateOfBirth")
 
         setContent {
+            val isRead = viewModel.isReadNFC.observeAsState().value
             Scaffold(
                 modifier = Modifier.fillMaxSize()
             ) {
-                it
-                HoldCloseDocScreen()
+                if (isRead == true) {
+                    ResultsScreen(
+                        viewModel.userChipInfo.value
+                    )
+                } else {
+                    HoldCloseDocScreen()
+                }
             }
         }
     }
@@ -142,7 +159,6 @@ class ReaderActivityKt : ComponentActivity() {
         if (NfcAdapter.ACTION_TECH_DISCOVERED == intent!!.action) {
             val tag = intent.extras!!.getParcelable<Tag>(NfcAdapter.EXTRA_TAG)
             if (Arrays.asList(*tag!!.techList).contains("android.nfc.tech.IsoDep")) {
-                val preferences = preferences
                 val passportNumber = preferences.getString(KEY_PASSPORT_NUMBER, null)
                 val expirationDate = ReadingUtils.convertDate(
                     preferences.getString(
@@ -156,7 +172,8 @@ class ReaderActivityKt : ComponentActivity() {
                         null
                     )
                 )
-                if (!passportNumber.isNullOrEmpty() && expirationDate != null && !expirationDate.isEmpty() && birthDate != null && !birthDate.isEmpty()) {
+                Log.e(TAG, "$passportNumber $expirationDate $birthDate")
+                if (!passportNumber.isNullOrEmpty() && expirationDate != null && expirationDate.isNotEmpty() && birthDate != null && birthDate.isNotEmpty()) {
                     val bacKey: BACKeySpec = BACKey(passportNumber, birthDate, expirationDate)
                     ReadTask(IsoDep.get(tag), bacKey)
 
@@ -308,11 +325,7 @@ class ReaderActivityKt : ComponentActivity() {
             sodFile = SODFile(sodIn)
 
             // We perform Chip Authentication using Data Group 14
-
-            // We perform Chip Authentication using Data Group 14
             doChipAuth(service)
-
-            // Then Passive Authentication using SODFile
 
             // Then Passive Authentication using SODFile
             doPassiveAuth()
@@ -337,56 +350,42 @@ class ReaderActivityKt : ComponentActivity() {
                 )
                 imageBase64 = Base64.encodeToString(buffer, Base64.DEFAULT)
             }
-        }
-            .also {
+
+            withContext(Dispatchers.Main) {
+
                 val mrzInfo = dg1File.mrzInfo
 
-                /*intent.putExtra(
-                    ResultActivity.KEY_FIRST_NAME,
-                    mrzInfo.secondaryIdentifier.replace("<", " ")
-                )
-                intent.putExtra(
-                    ResultActivity.KEY_LAST_NAME,
-                    mrzInfo.primaryIdentifier.replace("<", " ")
-                )
-                intent.putExtra(ResultActivity.KEY_GENDER, mrzInfo.gender.toString())
-                intent.putExtra(ResultActivity.KEY_STATE, mrzInfo.issuingState)
-                intent.putExtra(ResultActivity.KEY_NATIONALITY, mrzInfo.nationality)
-                intent.putExtra(ResultActivity.KEY_MRZ, mrzInfo.toString())
-                var passiveAuthStr = ""
-                passiveAuthStr = if (passiveAuthSuccess) {
+                val passiveAuthStr = if (passiveAuthSuccess) {
                     "passed"
                 } else {
                     "failed"
                 }
 
-                var chipAuthStr = ""
-                chipAuthStr = if (chipAuthSucceeded) {
+                val chipAuthStr = if (chipAuthSucceeded) {
                     "passed"
                 } else {
                     "failed"
                 }
-                intent.putExtra(ResultActivity.KEY_PASSIVE_AUTH, passiveAuthStr)
-                intent.putExtra(ResultActivity.KEY_CHIP_AUTH, chipAuthStr)
 
-                if (encodePhotoToBase64) {
-                    intent.putExtra(ResultActivity.KEY_PHOTO_BASE64, imageBase64)
-                } else {
-                    val ratio = 320.0 / bitmap.height
-                    val targetHeight = (bitmap.height * ratio).toInt()
-                    val targetWidth = (bitmap.width * ratio).toInt()
-                    intent.putExtra(
-                        ResultActivity.KEY_PHOTO,
-                        Bitmap.createScaledBitmap(bitmap, targetWidth, targetHeight, false)
+                val ratio = 320.0 / bitmap.height
+                val targetHeight = (bitmap.height * ratio).toInt()
+                val targetWidth = (bitmap.width * ratio).toInt()
+                val photo: Bitmap = Bitmap.createScaledBitmap(bitmap, targetWidth, targetHeight, false)
+                viewModel.updateUserChipInfo(
+                    UserChipInfo(
+                        mrzInfo.primaryIdentifier.replace("<", " "),
+                        mrzInfo.secondaryIdentifier.replace("<", " "),
+                        mrzInfo.gender.toString(),
+                        mrzInfo.issuingState,
+                        mrzInfo.nationality,
+                        passiveAuthStr,
+                        chipAuthStr,
+                        photo
                     )
-                }
+                )
 
-                if (callingActivity != null) {
-                    setResult(RESULT_OK, intent)
-                    finish()
-                } else {
-                    startActivity(intent)
-                }*/
+                viewModel.finishReadNfc()
             }
+        }
     }
 }

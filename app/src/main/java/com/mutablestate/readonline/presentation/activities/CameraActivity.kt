@@ -17,8 +17,6 @@ import com.mutablestate.readonline.domain.textprocessor.TextRecognitionProcessor
 import com.mutablestate.readonline.domain.textprocessor.ocrinternals.GraphicOverlay
 import java.io.IOException
 import java.nio.ByteBuffer
-import kotlin.math.max
-
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var previewView : PreviewView

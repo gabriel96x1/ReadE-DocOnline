@@ -5,5 +5,5 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun HoldCloseDocScreen() {
-    Text(text = "pasaste gg")
+    Text(text = "Hold your ID close")
 }
