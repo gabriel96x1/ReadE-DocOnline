@@ -21,7 +21,7 @@ Available data keys:
 
 ## Contacts
 
-Author - Gabriel Rodriguez
+Author - Gabriel Rodriguez ([gabriel96x1@gmail.com](mailto:gabriel96x1@gmail.com))
 
 Credits to:
 
