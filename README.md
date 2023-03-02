@@ -1,7 +1,7 @@
 # Read E-Doc Online based on e-Passport NFC Reader in ICAO SC reading activity
 
 
-Android app that uses the NFC chip to communicate with an electronic Document, could be Passport Or ID.
+Android app that uses the NFC chip to read electronic Documents, could be Passport Or ID ICAO Compliant.
 
 
 The following string extras can be set to allow pre-filling of input fields:
@@ -31,14 +31,11 @@ Credits to:
 
 Note that the app includes following third party dependencies:
 
-- FIREBASE - google api
-- SIGNATURE PAD 'com.github.gcacace:signature-pad:1.3.1'
 - JMRTD - [LGPL 3.0 License](https://www.gnu.org/licenses/lgpl-3.0.en.html)
 - SCUBA (Smart Card Utils) - [LGPL 3.0 License](https://www.gnu.org/licenses/lgpl-3.0.en.html)
 - Spongy Castle - MIT-based [Bouncy Castle Licence](https://www.bouncycastle.org/licence.html)
 - JP2 for Android - [BSD 2-Clause License](https://opensource.org/licenses/BSD-2-Clause)
 - JNBIS - [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
-- Material DateTimepicker - [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## License
 
