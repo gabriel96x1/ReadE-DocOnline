@@ -15,7 +15,7 @@ fun Text.toBacKeys(): BacKeyParts {
     var mrz = textBlocks[textBlocks.size - 1].text
     val lines: MutableList<String> = ArrayList()
 
-    Log.d("Read Text", text)
+    Log.d("ReadTextFromOCR", text)
 
     try {
         if (mrz.length < 33) {
@@ -53,7 +53,7 @@ fun Text.toBacKeys(): BacKeyParts {
             expiryDate = infoLine.substring(21, 27)
         }
 
-        Log.d("MRZ Parts", "$docNum $birthDate $expiryDate")
+        Log.d("MRZParts", "$docNum $birthDate $expiryDate")
 
         return BacKeyParts(
             docNum = docNum,

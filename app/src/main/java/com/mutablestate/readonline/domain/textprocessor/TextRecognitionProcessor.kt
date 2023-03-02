@@ -42,6 +42,7 @@ class TextRecognitionProcessor(
         Log.d(TAG, "On-device Text detection successful")
         val bacKeyParts = text.toBacKeys()
         val intent = Intent(graphicOverlay.context, ReaderActivityKt::class.java)
+        intent.putExtra("text", text.text)
         intent.putExtra("docNum", bacKeyParts.docNum)
         intent.putExtra("birthDate", bacKeyParts.birthDate)
         intent.putExtra("expiryDate", bacKeyParts.expiryDate)

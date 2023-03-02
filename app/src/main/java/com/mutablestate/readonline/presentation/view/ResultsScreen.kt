@@ -1,5 +1,6 @@
 package com.mutablestate.readonline.presentation.view
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -9,9 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
 import com.mutablestate.readonline.domain.models.UserChipInfo
+import com.mutablestate.readonline.domain.utils.ReadingUtils
 
 @Composable
-fun ResultsScreen(chipInfo: UserChipInfo?) {
+fun ResultsScreen(chipInfo: UserChipInfo?, mlkitText: String?) {
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -36,7 +38,7 @@ fun ResultsScreen(chipInfo: UserChipInfo?) {
         Text(text = chipInfo.ChipAuth)
         Spacer(modifier = Modifier.height(12.dp))
         Text(text = chipInfo.passiveAuth)
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(text = ReadingUtils.isRealId(mlkitText!!, chipInfo).toString())
     }
-
-
 }

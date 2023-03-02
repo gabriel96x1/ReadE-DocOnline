@@ -4,13 +4,11 @@ import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Bitmap
 import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.nfc.tech.IsoDep
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.util.Base64
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,48 +17,14 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import com.mutablestate.readonline.domain.models.UserChipInfo
-import com.mutablestate.readonline.domain.utils.ImageUtil
 import com.mutablestate.readonline.domain.utils.ReadingUtils
 import com.mutablestate.readonline.presentation.stateflows.ReadingNFCState
 import com.mutablestate.readonline.presentation.view.AnalyzingInfoScreen
 import com.mutablestate.readonline.presentation.view.HoldCloseDocScreen
 import com.mutablestate.readonline.presentation.view.ResultsScreen
 import com.mutablestate.readonline.presentation.viewmodel.ReaderViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import net.sf.scuba.smartcards.CardService
-import org.apache.commons.io.IOUtils
-import org.bouncycastle.asn1.ASN1InputStream
-import org.bouncycastle.asn1.ASN1Primitive
-import org.bouncycastle.asn1.ASN1Sequence
-import org.bouncycastle.asn1.ASN1Set
-import org.bouncycastle.asn1.x509.Certificate
 import org.jmrtd.BACKey
 import org.jmrtd.BACKeySpec
-import org.jmrtd.PassportService
-import org.jmrtd.lds.ChipAuthenticationPublicKeyInfo
-import org.jmrtd.lds.SODFile
-import org.jmrtd.lds.SecurityInfo
-import org.jmrtd.lds.icao.DG14File
-import org.jmrtd.lds.icao.DG1File
-import org.jmrtd.lds.icao.DG2File
-import org.jmrtd.lds.iso19794.FaceImageInfo
-import org.jmrtd.lds.iso19794.FaceInfo
-import java.io.ByteArrayInputStream
-import java.io.DataInputStream
-import java.io.InputStream
-import java.security.KeyStore
-import java.security.MessageDigest
-import java.security.Signature
-import java.security.cert.CertPathValidator
-import java.security.cert.CertificateFactory
-import java.security.cert.PKIXParameters
-import java.security.cert.X509Certificate
-import java.security.spec.MGF1ParameterSpec
-import java.security.spec.PSSParameterSpec
 import java.util.*
 
 
@@ -89,6 +53,7 @@ class ReaderActivityKt : ComponentActivity() {
         val dateOfBirth = intent.getStringExtra("birthDate")
         val dateOfExpiry = intent.getStringExtra("expiryDate")
         val passportNumber = intent.getStringExtra("docNum")
+        val mlkitText = intent.getStringExtra("text")
         encodePhotoToBase64 = intent.getBooleanExtra("photoAsBase64", false)
 
         if (dateOfBirth != null) {
@@ -121,8 +86,10 @@ class ReaderActivityKt : ComponentActivity() {
                     }
                     ReadingNFCState.ENDREAD -> {
                         ResultsScreen(
-                            viewModel.userChipInfo.value
+                            viewModel.userChipInfo.value,
+                            mlkitText
                         )
+                        Log.d("ReadInfoComplete", viewModel.userChipInfo.value.toString())
                     }
                     else -> HoldCloseDocScreen()
                 }

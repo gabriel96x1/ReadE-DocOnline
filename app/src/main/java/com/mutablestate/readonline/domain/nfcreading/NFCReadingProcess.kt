@@ -256,13 +256,14 @@ class NFCReadingProcess(
         val targetWidth = (bitmap.width * ratio).toInt()
         val photo: Bitmap = Bitmap.createScaledBitmap(bitmap, targetWidth, targetHeight, false)
 
-
         _userChipInfo.value = UserChipInfo(
             mrzInfo.primaryIdentifier.replace("<", " "),
             mrzInfo.secondaryIdentifier.replace("<", " "),
             mrzInfo.gender.toString(),
             mrzInfo.issuingState,
             mrzInfo.nationality,
+            mrzInfo.documentNumber,
+            mrzInfo.dateOfExpiry,
             passiveAuthStr,
             chipAuthStr,
             photo

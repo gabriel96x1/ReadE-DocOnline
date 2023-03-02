@@ -8,6 +8,8 @@ data class UserChipInfo(
     val gender: String,
     val issuingState: String,
     val nationality: String,
+    val docNum: String,
+    val expiryDate: String,
     val passiveAuth: String,
     val ChipAuth: String,
     val photo: Bitmap
