@@ -380,6 +380,7 @@ class ReaderActivityKt : ComponentActivity() {
                     "failed"
                 }
 
+                mrzInfo.dateOfBirth
                 val ratio = 320.0 / bitmap.height
                 val targetHeight = (bitmap.height * ratio).toInt()
                 val targetWidth = (bitmap.width * ratio).toInt()

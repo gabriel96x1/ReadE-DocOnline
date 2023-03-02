@@ -2,8 +2,7 @@ package com.mutablestate.readonline.presentation.view
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,17 +12,28 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun AnalyzingInfoScreen() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxWidth()
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
     ) {
         val scale = scaleShapeTransition(0.1f, 1f, 2000)
+        Spacer(modifier = Modifier.height(50.dp))
+        Text(
+            text = "Reading your Id, don't move it.",
+            fontSize = 24.sp,
+            modifier = Modifier.weight(0.3f)
+        )
         Canvas(
             modifier = Modifier
                 .fillMaxWidth()
+                .weight(0.7f)
                 .graphicsLayer {
                     scaleX = scale
                     scaleY = scale
@@ -44,7 +54,6 @@ fun AnalyzingInfoScreen() {
                 )
             }
         )
-        Text(text = "Reading your Id")
     }
 }
 
@@ -65,4 +74,10 @@ fun scaleShapeTransition(
     )
 
     return scale
+}
+
+@Preview
+@Composable
+fun Preview() {
+    AnalyzingInfoScreen()
 }

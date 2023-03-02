@@ -86,7 +86,6 @@ dependencies {
 
     //MLKit Google
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:18.0.0'
-    implementation 'com.google.mlkit:barcode-scanning:17.0.2'
     implementation 'com.google.mlkit:image-labeling:17.0.7'
     implementation 'com.google.mlkit:image-labeling-custom:17.0.1'
     implementation 'androidx.annotation:annotation:1.2.0'

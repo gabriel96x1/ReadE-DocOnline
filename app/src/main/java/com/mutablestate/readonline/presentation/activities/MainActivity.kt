@@ -3,7 +3,6 @@ package com.mutablestate.readonline.presentation.activities
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
+import com.mutablestate.readonline.presentation.view.InstructionsScreen
 import com.mutablestate.readonline.ui.theme.ReadOnlineTheme
 
 
@@ -25,19 +25,10 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    Button(onClick = {
-
-                        Intent(this, CameraActivity::class.java).also {
-                            startActivity(it)
-                        }
-
-                    }) {
-                        Text(text = "to camera")
-                    }
+                    InstructionsScreen()
                 }
             }
         }
-
 
         val PERMISSION_ALL = 1
         val PERMISSIONS = arrayOf(
