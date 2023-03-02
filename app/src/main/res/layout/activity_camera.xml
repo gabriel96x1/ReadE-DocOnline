@@ -1,31 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".presentation.activities.CameraActivity">
 
     <androidx.camera.view.PreviewView
         android:id="@+id/previewView"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_weight="80">
-
+        android:layout_height="match_parent"
+        android:layout_marginEnd="88dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     </androidx.camera.view.PreviewView>
+
+    <com.mutablestate.readonline.presentation.view.CustomRectangleView
+        android:id="@+id/rectangle_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Overlay"
+        app:layout_constraintBottom_toBottomOf="@+id/previewView"
+        app:layout_constraintEnd_toEndOf="@+id/previewView"
+        app:layout_constraintStart_toStartOf="@+id/previewView"
+        app:layout_constraintTop_toTopOf="@+id/previewView">
+    </com.mutablestate.readonline.presentation.view.CustomRectangleView>
 
     <com.mutablestate.readonline.domain.textprocessor.ocrinternals.GraphicOverlay
         android:id="@+id/graphic_overlay"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_take_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Take Pic" />
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="120dp"
+        android:text="Take Pic"
+        app:layout_constraintStart_toEndOf="@+id/previewView"
+        app:layout_constraintTop_toTopOf="@+id/previewView" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,6 +28,7 @@
         <activity
             android:name=".presentation.activities.CameraActivity"
             android:exported="false"
+            android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity
             android:name=".presentation.activities.MainActivity"

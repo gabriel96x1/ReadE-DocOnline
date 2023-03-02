@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -15,6 +16,7 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.mutablestate.readonline.R
 import com.mutablestate.readonline.domain.textprocessor.TextRecognitionProcessor
 import com.mutablestate.readonline.domain.textprocessor.ocrinternals.GraphicOverlay
+import com.mutablestate.readonline.presentation.view.CustomRectangleView
 import java.io.IOException
 import java.nio.ByteBuffer
 
@@ -22,6 +24,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var previewView : PreviewView
     private lateinit var graphicOverlay : GraphicOverlay
     private lateinit var captureBtn : Button
+    private lateinit var rectangleView : CustomRectangleView
     private lateinit var imageProcessor : TextRecognitionProcessor
     private lateinit var cameraSelector : CameraSelector
     private lateinit var imageCapture : ImageCapture
@@ -32,6 +35,8 @@ class CameraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
 
+        supportActionBar?.hide()
+
         imageProcessor = TextRecognitionProcessor(this, TextRecognizerOptions.Builder().build())
 
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
@@ -39,6 +44,7 @@ class CameraActivity : AppCompatActivity() {
         previewView = findViewById(R.id.previewView)
         graphicOverlay = findViewById(R.id.graphic_overlay)
         captureBtn = findViewById(R.id.btn_take_pic)
+        rectangleView = findViewById(R.id.rectangle_view)
 
         cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
@@ -81,6 +87,7 @@ class CameraActivity : AppCompatActivity() {
         preview.setSurfaceProvider(previewView.surfaceProvider)
 
         val camera = cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector, preview, imageCapture)
+
     }
 
     private fun imageProxyToBitmap(image: ImageProxy): Bitmap {
