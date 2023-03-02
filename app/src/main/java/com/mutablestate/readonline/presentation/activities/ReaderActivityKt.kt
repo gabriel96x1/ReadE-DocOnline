@@ -23,6 +23,8 @@ import androidx.lifecycle.lifecycleScope
 import com.mutablestate.readonline.domain.models.UserChipInfo
 import com.mutablestate.readonline.domain.utils.ImageUtil
 import com.mutablestate.readonline.domain.utils.ReadingUtils
+import com.mutablestate.readonline.presentation.stateflows.ReadingNFCState
+import com.mutablestate.readonline.presentation.view.AnalyzingInfoScreen
 import com.mutablestate.readonline.presentation.view.HoldCloseDocScreen
 import com.mutablestate.readonline.presentation.view.ResultsScreen
 import com.mutablestate.readonline.presentation.viewmodel.ReaderViewModel
@@ -116,16 +118,24 @@ class ReaderActivityKt : ComponentActivity() {
         Log.e(TAG, "$passportNumber $dateOfExpiry $dateOfBirth")
 
         setContent {
-            val isRead = viewModel.isReadNFC.observeAsState().value
+            val readingState = viewModel.readingState.observeAsState().value
             Scaffold(
                 modifier = Modifier.fillMaxSize()
             ) {
-                if (isRead == true) {
-                    ResultsScreen(
-                        viewModel.userChipInfo.value
-                    )
-                } else {
-                    HoldCloseDocScreen()
+
+                when (readingState) {
+                    ReadingNFCState.PREREAD -> {
+                        HoldCloseDocScreen()
+                    }
+                    ReadingNFCState.READING -> {
+                        AnalyzingInfoScreen()
+                    }
+                    ReadingNFCState.ENDREAD -> {
+                        ResultsScreen(
+                            viewModel.userChipInfo.value
+                        )
+                    }
+                    else -> HoldCloseDocScreen()
                 }
             }
         }
@@ -173,6 +183,9 @@ class ReaderActivityKt : ComponentActivity() {
                     )
                 )
                 Log.e(TAG, "$passportNumber $expirationDate $birthDate")
+
+                viewModel.startReadNfc()
+
                 if (!passportNumber.isNullOrEmpty() && expirationDate != null && expirationDate.isNotEmpty() && birthDate != null && birthDate.isNotEmpty()) {
                     val bacKey: BACKeySpec = BACKey(passportNumber, birthDate, expirationDate)
                     ReadTask(IsoDep.get(tag), bacKey)
