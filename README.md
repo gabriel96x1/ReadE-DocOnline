@@ -1,4 +1,4 @@
-# Read E-Doc Online based on e-Passport NFC Reader in ICAO SC reading activity
+# Read E-Doc Online
 
 
 Android app that uses the NFC chip to read electronic Documents, could be Passport Or ID ICAO Compliant.
