@@ -1,5 +1,6 @@
 package com.mutablestate.readonline.domain.textprocessor
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -14,6 +15,7 @@ import com.mutablestate.readonline.domain.textprocessor.ocrinternals.PreferenceU
 import com.mutablestate.readonline.domain.textprocessor.ocrinternals.VisionProcessorBase
 import com.mutablestate.readonline.presentation.activities.ReaderActivityKt
 
+
 class TextRecognitionProcessor(
     context: Context?, textRecognizerOptions: TextRecognizerOptionsInterface?
 ) : VisionProcessorBase<Text?>(context) {
@@ -21,7 +23,7 @@ class TextRecognitionProcessor(
     private val shouldGroupRecognizedTextInBlocks: Boolean
     private val showLanguageTag: Boolean
     private val TAG = "TextRecProcessor"
-
+    private lateinit var activity: Activity
 
     init {
         shouldGroupRecognizedTextInBlocks =
@@ -41,19 +43,22 @@ class TextRecognitionProcessor(
     override fun onSuccess(text: Text, graphicOverlay: GraphicOverlay) {
         Log.d(TAG, "On-device Text detection successful")
         val bacKeyParts = text.toBacKeys()
-        val intent = Intent(graphicOverlay.context, ReaderActivityKt::class.java)
-        intent.putExtra("text", text.text)
-        intent.putExtra("docNum", bacKeyParts.docNum)
-        intent.putExtra("birthDate", bacKeyParts.birthDate)
-        intent.putExtra("expiryDate", bacKeyParts.expiryDate)
-        graphicOverlay.context.startActivity(intent)
 
-
-        //graphicOverlay.add(
-        //new TextGraphic(graphicOverlay, text, shouldGroupRecognizedTextInBlocks, showLanguageTag));
+        if (bacKeyParts.docNum.isEmpty() || bacKeyParts.birthDate.isEmpty() || bacKeyParts.expiryDate.isEmpty()) {
+            activity = graphicOverlay.context as Activity
+            activity.finish()
+        } else {
+            val intent = Intent(graphicOverlay.context, ReaderActivityKt::class.java)
+            intent.putExtra("text", text.text)
+            intent.putExtra("docNum", bacKeyParts.docNum)
+            intent.putExtra("birthDate", bacKeyParts.birthDate)
+            intent.putExtra("expiryDate", bacKeyParts.expiryDate)
+            graphicOverlay.context.startActivity(intent)
+        }
     }
 
     override fun onFailure(e: Exception) {
         Log.w(TAG, "Text detection failed. $e")
+
     }
 }

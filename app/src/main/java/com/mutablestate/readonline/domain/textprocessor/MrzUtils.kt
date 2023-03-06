@@ -12,12 +12,11 @@ fun Text.toBacKeys(): BacKeyParts {
     val birthDate: String
     val expiryDate: String
 
-    var mrz = textBlocks[textBlocks.size - 1].text
     val lines: MutableList<String> = ArrayList()
 
-    Log.d("ReadTextFromOCR", text)
-
     try {
+        var mrz = textBlocks[textBlocks.size - 1].text
+        Log.d("ReadTextFromOCR", text)
         if (mrz.length < 33) {
             lines.add(textBlocks[textBlocks.size - 3].text.replace(" ".toRegex(), "").uppercase())
             lines.add(textBlocks[textBlocks.size - 2].text.replace(" ".toRegex(), "").uppercase())

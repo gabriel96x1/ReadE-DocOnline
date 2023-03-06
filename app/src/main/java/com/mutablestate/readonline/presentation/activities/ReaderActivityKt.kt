@@ -23,6 +23,7 @@ import com.mutablestate.readonline.presentation.view.AnalyzingInfoScreen
 import com.mutablestate.readonline.presentation.view.HoldCloseDocScreen
 import com.mutablestate.readonline.presentation.view.ResultsScreen
 import com.mutablestate.readonline.presentation.viewmodel.ReaderViewModel
+import com.mutablestate.readonline.ui.theme.ReadOnlineTheme
 import org.jmrtd.BACKey
 import org.jmrtd.BACKeySpec
 import java.util.*
@@ -76,22 +77,23 @@ class ReaderActivityKt : ComponentActivity() {
             Scaffold(
                 modifier = Modifier.fillMaxSize()
             ) {
-
-                when (readingState) {
-                    ReadingNFCState.PREREAD -> {
-                        HoldCloseDocScreen()
+                ReadOnlineTheme {
+                    when (readingState) {
+                        ReadingNFCState.PREREAD -> {
+                            HoldCloseDocScreen()
+                        }
+                        ReadingNFCState.READING -> {
+                            AnalyzingInfoScreen()
+                        }
+                        ReadingNFCState.ENDREAD -> {
+                            ResultsScreen(
+                                viewModel.userChipInfo.value,
+                                mlkitText
+                            )
+                            Log.d("ReadInfoComplete", viewModel.userChipInfo.value.toString())
+                        }
+                        else -> HoldCloseDocScreen()
                     }
-                    ReadingNFCState.READING -> {
-                        AnalyzingInfoScreen()
-                    }
-                    ReadingNFCState.ENDREAD -> {
-                        ResultsScreen(
-                            viewModel.userChipInfo.value,
-                            mlkitText
-                        )
-                        Log.d("ReadInfoComplete", viewModel.userChipInfo.value.toString())
-                    }
-                    else -> HoldCloseDocScreen()
                 }
             }
         }
