@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mutablestate.readonline.domain.models.UserChipInfo
 import com.mutablestate.readonline.domain.nfcreading.NFCReadingProcess
+import com.mutablestate.readonline.presentation.stateflows.ReadingNFCEvent
 import com.mutablestate.readonline.presentation.stateflows.ReadingNFCState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,12 +16,13 @@ import kotlinx.coroutines.withContext
 import org.jmrtd.BACKeySpec
 
 class ReaderViewModel : ViewModel() {
-    private val _userChipInfo = MutableLiveData<UserChipInfo>()
-    val userChipInfo : LiveData<UserChipInfo> = _userChipInfo
+    private val _readingEvent = MutableLiveData<ReadingNFCEvent>()
+    val readingEvent : LiveData<ReadingNFCEvent> = _readingEvent
     private val _readingState = MutableLiveData<ReadingNFCState>()
     val readingState : LiveData<ReadingNFCState> = _readingState
 
     init {
+        _readingEvent.value = ReadingNFCEvent.PREREAD
         _readingState.value = ReadingNFCState.PREREAD
     }
 
@@ -28,15 +30,16 @@ class ReaderViewModel : ViewModel() {
         val readingProcess = NFCReadingProcess(context)
 
         viewModelScope.launch(Dispatchers.Default) {
-            readingProcess.readTask(isoDep, bacKey, _userChipInfo)
+            val data = readingProcess.readTask(isoDep, bacKey)
             withContext(Dispatchers.Main) {
-                _readingState.value = ReadingNFCState.ENDREAD
+                _readingEvent.value = ReadingNFCEvent.ENDREAD
+                _readingState.value = ReadingNFCState.ENDREAD(data)
             }
         }
     }
 
     fun startReadNfc(context: Context, isoDep: IsoDep?, bacKey: BACKeySpec) {
-        _readingState.value = ReadingNFCState.READING
+        _readingEvent.value = ReadingNFCEvent.READING
         runNFCReadingTask(context, isoDep, bacKey)
     }
 }

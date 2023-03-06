@@ -164,9 +164,8 @@ class NFCReadingProcess(
 
     suspend fun readTask(
         isoDep: IsoDep?,
-        bacKey: BACKeySpec,
-        _userChipInfo: MutableLiveData<UserChipInfo>
-    ) {
+        bacKey: BACKeySpec
+    ): UserChipInfo {
         val cardService = CardService.getInstance(isoDep)
         cardService.open()
 
@@ -227,15 +226,10 @@ class NFCReadingProcess(
             imageBase64 = Base64.encodeToString(buffer, Base64.DEFAULT)
         }
 
-        withContext(Dispatchers.Main) {
-            postReadingTask(_userChipInfo)
-
-        }
+        return postReadingTask()
     }
 
-    private fun postReadingTask(
-        _userChipInfo: MutableLiveData<UserChipInfo>
-    ) {
+    private fun postReadingTask(): UserChipInfo {
         val mrzInfo = dg1File.mrzInfo
 
         val passiveAuthStr = if (passiveAuthSuccess) {
@@ -256,7 +250,7 @@ class NFCReadingProcess(
         val targetWidth = (bitmap.width * ratio).toInt()
         val photo: Bitmap = Bitmap.createScaledBitmap(bitmap, targetWidth, targetHeight, false)
 
-        _userChipInfo.value = UserChipInfo(
+        return UserChipInfo(
             mrzInfo.primaryIdentifier.replace("<", " "),
             mrzInfo.secondaryIdentifier.replace("<", " "),
             mrzInfo.gender.toString(),

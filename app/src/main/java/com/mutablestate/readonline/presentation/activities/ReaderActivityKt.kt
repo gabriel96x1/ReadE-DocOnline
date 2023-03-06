@@ -17,7 +17,9 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
+import com.mutablestate.readonline.domain.models.UserChipInfo
 import com.mutablestate.readonline.domain.utils.ReadingUtils
+import com.mutablestate.readonline.presentation.stateflows.ReadingNFCEvent
 import com.mutablestate.readonline.presentation.stateflows.ReadingNFCState
 import com.mutablestate.readonline.presentation.view.AnalyzingInfoScreen
 import com.mutablestate.readonline.presentation.view.HoldCloseDocScreen
@@ -73,29 +75,39 @@ class ReaderActivityKt : ComponentActivity() {
         Log.e(TAG, "$passportNumber $dateOfExpiry $dateOfBirth")
 
         setContent {
+            val readingEvent = viewModel.readingEvent.observeAsState().value
             val readingState = viewModel.readingState.observeAsState().value
+
             Scaffold(
                 modifier = Modifier.fillMaxSize()
             ) {
                 ReadOnlineTheme {
-                    when (readingState) {
-                        ReadingNFCState.PREREAD -> {
+
+                    when (readingEvent) {
+                        ReadingNFCEvent.PREREAD -> {
                             HoldCloseDocScreen()
                         }
-                        ReadingNFCState.READING -> {
+                        ReadingNFCEvent.READING -> {
                             AnalyzingInfoScreen()
                         }
-                        ReadingNFCState.ENDREAD -> {
+                        ReadingNFCEvent.ENDREAD -> {
                             ResultsScreen(
-                                viewModel.userChipInfo.value,
+                                setState(readingState),
                                 mlkitText
                             )
-                            Log.d("ReadInfoComplete", viewModel.userChipInfo.value.toString())
+                            Log.d("ReadInfoComplete", setState(readingState).toString())
                         }
                         else -> HoldCloseDocScreen()
                     }
                 }
             }
+        }
+    }
+
+    private fun setState(readingState: ReadingNFCState?): UserChipInfo? {
+        return when(readingState) {
+            is ReadingNFCState.ENDREAD -> readingState.userChipInfo
+            else -> null
         }
     }
 
