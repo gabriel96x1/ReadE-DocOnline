@@ -33,7 +33,7 @@ fun ResultsScreen(chipInfo: UserChipInfo?, mlkitText: String?) {
         }
         Spacer(modifier = Modifier.height(12.dp))
         Row {
-            Text(text = stringResource(R.string.scondary_id_results_screen))
+            Text(text = stringResource(R.string.secondary_id_results_screen))
             Text(text = chipInfo.secondId)
         }
         Spacer(modifier = Modifier.height(12.dp))

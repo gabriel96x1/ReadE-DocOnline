@@ -1,2 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <string name="app_name">Read Online</string>
+
+    <string name="pass">Completado</string>
+    <string name="failed">Fallido</string>
+
+    <string name="title_activity_take_photo">TakePhotoActivity</string>
+
+    <string name="take_picture_camera_activity">Tomar fotografìa</string>
+    <string name="overlay_camera_activity">Overlay</string>
+    <string name="activate_flash_camera_activity">Activar Flash</string>
+    <string name="real_id_results_screen">Comparando la informacion impresa en la identificacion con la contenida en el chip se puede determinar que la identificacion es REAL</string>
+    <string name="false_id_results_screen">Comparando la informacion impresa en la identificacion con la contenida en el chip se puede determinar que la identificacion es FALSA</string>
+    <string name="nationality_results_screen">Nacionalidad: </string>
+    <string name="gender_results_screen">Genero: </string>
+    <string name="secondary_id_results_screen">Identificador secundario: </string>
+    <string name="primary_id_results_screen">Identificador primario: </string>
+    <string name="photo_description_results_screen">Fotografia del usuario</string>
+    <string name="to_nfc_settings_hold_close_doc_screen">A configuracion de NFC</string>
+    <string name="dialog_text_hold_close_doc_screen">Para continuar necesitas activar tu NFC</string>
+    <string name="nfc_icon_description_hold_close_doc_screen">Aproxima tu documento electronico</string>
+    <string name="hold_close_doc_string_hold_close_doc_screen">Aceca tu identificacion por detras de tu dispositivo</string>
+    <string name="reading_id_message_analyzing_info_screen">Leyendo identificacion, por favor espere.</string>
+
+    <string name="pref_key_info_hide" translatable="false">ih</string>
+    <string name="pref_key_group_recognized_text_in_blocks" translatable="false">grtib</string>
+    <string name="pref_key_show_language_tag" translatable="false">slt</string>
+    <string name="pref_key_camera_live_viewport" translatable="false">clv</string>
+
+</resources>
