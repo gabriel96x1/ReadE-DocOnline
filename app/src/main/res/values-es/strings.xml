@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Read Online</string>
+    <string name="app_name">Electronic Docs</string>
 
     <string name="pass">Completado</string>
     <string name="failed">Fallido</string>
@@ -21,7 +21,7 @@
     <string name="to_nfc_settings_hold_close_doc_screen">A configuracion de NFC</string>
     <string name="dialog_text_hold_close_doc_screen">Para continuar necesitas activar tu NFC</string>
     <string name="nfc_icon_description_hold_close_doc_screen">Aproxima tu documento electronico</string>
-    <string name="hold_close_doc_string_hold_close_doc_screen">Aceca tu identificacion por detras de tu dispositivo</string>
+    <string name="hold_close_doc_string_hold_close_doc_screen">Acerca tu identificacion por detras de tu dispositivo</string>
     <string name="reading_id_message_analyzing_info_screen">Leyendo identificacion, por favor espere.</string>
     <string name="recommendation3_dialog" translatable="false">- Intenta tomar las letras lo mas claro posibles.</string>
     <string name="recommendation2_dialog" translatable="false">- Centra tu identificacion en el rectangulo blanco.</string>
@@ -30,6 +30,15 @@
     <string name="something_wrong_dialog" translatable="false">Algo salio mal analizando tu imagen</string>
     <string name="ok_button_dialog" translatable="false">Ok</string>
     <string name="back_to_start_results_screen" translatable="false">Volver a patalla de inicio</string>
+    <string name="help1_inst_screen" translatable="false">Esta herramienta esta diseñada para leer el Chip NFC de tu e-ID o e-Passport.</string>
+    <string name="welcome_inst_screen" translatable="false">Bienvenido a Electronic Docs</string>
+    <string name="recom_inst_screen" translatable="false">Para esto por favor lleve a cabo las siguientes indicaciones:</string>
+    <string name="recom1_inst_screen" translatable="false"> - Trate de buscar un lugar con buena iluminacion.</string>
+    <string name="recom2_inst_screen" translatable="false"> - Centra tu identificacion en el rectangulo blanco.</string>
+    <string name="recom3_inst_screen" translatable="false"> - Presiona el boton de captura para iniciar a analizar tu identificacion.</string>
+    <string name="read_button_inst_scren" translatable="false">Leer tu identificacion</string>
+    <string name="read_string_inst_screen" translatable="false">A continuacion presione el boton \"Leer tu identificacion\" para continuar.</string>
+
 
     <string name="pref_key_info_hide" translatable="false">ih</string>
     <string name="pref_key_group_recognized_text_in_blocks" translatable="false">grtib</string>

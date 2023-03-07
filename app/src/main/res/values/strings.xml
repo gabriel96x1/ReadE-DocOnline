@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Read Online</string>
+    <string name="app_name">Electronic Docs</string>
 
     <string name="pass">Pass</string>
     <string name="failed">Failed</string>
@@ -28,11 +28,19 @@
     <string name="something_wrong_dialog" translatable="false">Something went wrong analyzing your image</string>
     <string name="ok_button_dialog" translatable="false">Ok</string>
     <string name="back_to_start_results_screen" translatable="false">Back to initial screen</string>
+    <string name="help1_inst_screen" translatable="false">This tool will help you to read the NFC chip of your e-ID or e-Passport.</string>
+    <string name="welcome_inst_screen" translatable="false">Welcome to Electronic Docs</string>
+    <string name="recom_inst_screen" translatable="false">To do this please follow the next recommendations:</string>
+    <string name="recom1_inst_screen" translatable="false"> - Try to find a place with a good illumination.</string>
+    <string name="recom2_inst_screen" translatable="false"> - Center your ID inside the white rectangle.</string>
+    <string name="recom3_inst_screen" translatable="false"> - Press the capture button to start analyzing your ID information.</string>
+    <string name="read_button_inst_scren" translatable="false">Read your ID</string>
+    <string name="read_string_inst_screen" translatable="false">Please press \"Read your ID\" button to continue.</string>
+
 
     <string name="pref_key_info_hide" translatable="false">ih</string>
     <string name="pref_key_group_recognized_text_in_blocks" translatable="false">grtib</string>
     <string name="pref_key_show_language_tag" translatable="false">slt</string>
     <string name="pref_key_camera_live_viewport" translatable="false">clv</string>
-
 
 </resources>
