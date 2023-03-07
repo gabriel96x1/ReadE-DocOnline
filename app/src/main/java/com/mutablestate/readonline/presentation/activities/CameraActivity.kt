@@ -1,5 +1,6 @@
 package com.mutablestate.readonline.presentation.activities
 
+import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -29,7 +30,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var cameraSelector : CameraSelector
     private lateinit var imageCapture : ImageCapture
     private lateinit var flashButton : ImageView
-    private lateinit var camera: Camera
+    private lateinit var camera : Camera
     private var imageMaxWidth: Int? = null
     private var imageMaxHeight: Int? = null
 

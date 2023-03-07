@@ -28,12 +28,12 @@
         <activity
             android:name=".presentation.activities.CameraActivity"
             android:exported="false"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".presentation.activities.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.ReadOnline">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

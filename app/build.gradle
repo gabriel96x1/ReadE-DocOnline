@@ -93,7 +93,6 @@ dependencies {
     implementation 'com.google.mlkit:image-labeling-custom:17.0.1'
     implementation 'androidx.annotation:annotation:1.2.0'
 
-
     // On Device Machine Learnings
     implementation "com.google.android.odml:image:1.0.0-beta1"
 

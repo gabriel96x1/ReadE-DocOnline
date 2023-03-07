@@ -27,8 +27,8 @@ class CustomRectangleView @JvmOverloads constructor(
         val width = width.toFloat()
         val height = height.toFloat()
         val cornerRadius = 20f // set corner radius to 20 pixels
-        val rectWidth = width * 0.5f // set rectangle width to 80% of the view width
-        val rectHeight = height * 0.8f // set rectangle height to 60% of the view height
+        val rectWidth = width * 0.8f // set rectangle width to 80% of the view width
+        val rectHeight = height * 0.55f // set rectangle height to 60% of the view height
         val rectLeft = (width - rectWidth) / 2f // calculate left coordinate of the rectangle
         val rectTop = (height - rectHeight) / 2f // calculate top coordinate of the rectangle
 

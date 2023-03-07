@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/dialog_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Something went wrong analyzing your image please try again"
+        />
+
+    <TextView
+        android:id="@+id/dialog_text2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Try to follow the next recommendations: "
+        />
+
+    <TextView
+        android:id="@+id/dialog_text_help"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text=" - Try to find a place with a good illumination"
+        />
+
+    <TextView
+        android:id="@+id/dialog_text_help1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text=" - Center your ID inside the white rectangle"
+        />
+
+    <TextView
+        android:id="@+id/dialog_text_help2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text=" - Try to take the most clear possible all the letters"
+        />
+
+
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=" Ok "/>
+
+</LinearLayout>
