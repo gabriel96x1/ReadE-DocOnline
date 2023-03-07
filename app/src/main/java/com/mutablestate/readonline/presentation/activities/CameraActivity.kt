@@ -28,6 +28,8 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var imageProcessor : TextRecognitionProcessor
     private lateinit var cameraSelector : CameraSelector
     private lateinit var imageCapture : ImageCapture
+    private lateinit var flashButton : ImageView
+    private lateinit var camera: Camera
     private var imageMaxWidth: Int? = null
     private var imageMaxHeight: Int? = null
 
@@ -35,43 +37,8 @@ class CameraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
 
-        supportActionBar?.hide()
+        setupUi()
 
-        imageProcessor = TextRecognitionProcessor(this, TextRecognizerOptions.Builder().build())
-
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
-        previewView = findViewById(R.id.previewView)
-        graphicOverlay = findViewById(R.id.graphic_overlay)
-        captureBtn = findViewById(R.id.btn_take_pic)
-        rectangleView = findViewById(R.id.rectangle_view)
-
-        cameraProviderFuture.addListener({
-            val cameraProvider = cameraProviderFuture.get()
-            bindPreview(cameraProvider)
-        }, ContextCompat.getMainExecutor(this))
-
-        captureBtn.setOnClickListener {
-
-            // Capture the image and save it to the file
-            imageCapture.takePicture(ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageCapturedCallback() {
-                override fun onCaptureSuccess(image: ImageProxy) {
-                    super.onCaptureSuccess(image)
-                    val bitmap = imageProxyToBitmap(image)
-
-                    tryReloadAndDetectInImage(bitmap)
-                }
-
-                override fun onError(exception: ImageCaptureException) {
-                    // Image capture failed, handle the error
-                    Log.e("Camera Capture", exception.message.toString())
-
-                }
-            })
-        }
-
-        imageMaxHeight = previewView.height
-        imageMaxWidth = previewView.width
     }
 
     private fun bindPreview(cameraProvider : ProcessCameraProvider) {
@@ -86,10 +53,84 @@ class CameraActivity : AppCompatActivity() {
 
         preview.setSurfaceProvider(previewView.surfaceProvider)
 
-        val camera = cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector, preview, imageCapture)
+        camera = cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector, preview, imageCapture)
 
     }
 
+    private fun setupUi() {
+
+        var isFlashEnabled = false
+
+        supportActionBar?.hide()
+
+        imageProcessor = TextRecognitionProcessor(this, TextRecognizerOptions.Builder().build())
+
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+
+        previewView = findViewById(R.id.previewView)
+        graphicOverlay = findViewById(R.id.graphic_overlay)
+        captureBtn = findViewById(R.id.btn_take_pic)
+        rectangleView = findViewById(R.id.rectangle_view)
+        flashButton = findViewById(R.id.flash_image)
+
+        setFlashDrawable(isFlashEnabled)
+
+        cameraProviderFuture.addListener({
+            val cameraProvider = cameraProviderFuture.get()
+            bindPreview(cameraProvider)
+        }, ContextCompat.getMainExecutor(this))
+
+        flashButton.setOnClickListener {
+            if (isFlashEnabled) {
+                isFlashEnabled = false
+                setFlashDrawable(isFlashEnabled)
+                camera.cameraControl.enableTorch(isFlashEnabled)
+            } else {
+                isFlashEnabled = true
+                setFlashDrawable(isFlashEnabled)
+                camera.cameraControl.enableTorch(isFlashEnabled)
+            }
+        }
+
+        captureBtn.setOnClickListener {
+
+            imageCapture.takePicture(ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageCapturedCallback() {
+                override fun onCaptureSuccess(image: ImageProxy) {
+                    super.onCaptureSuccess(image)
+                    val bitmap = imageProxyToBitmap(image)
+
+                    tryReloadAndDetectInImage(bitmap)
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    Log.e("Camera Capture", exception.message.toString())
+
+                }
+            })
+        }
+
+        imageMaxHeight = previewView.height
+        imageMaxWidth = previewView.width
+    }
+
+    private fun setFlashDrawable(isFlashEnabled: Boolean) {
+        if (isFlashEnabled) {
+            flashButton.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this@CameraActivity,
+                    R.drawable.baseline_flash_on_24
+                )
+            )
+        } else {
+            flashButton.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this@CameraActivity,
+                    R.drawable.baseline_flash_off_24
+                )
+            )
+        }
+
+    }
     private fun imageProxyToBitmap(image: ImageProxy): Bitmap {
         val planeProxy = image.planes[0]
         val buffer: ByteBuffer = planeProxy.buffer

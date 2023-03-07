@@ -17,6 +17,16 @@
         app:layout_constraintTop_toTopOf="parent">
     </androidx.camera.view.PreviewView>
 
+    <ImageView
+        android:id="@+id/flash_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="flash"
+        android:padding="24dp"
+        app:layout_constraintStart_toStartOf="@+id/previewView"
+        app:layout_constraintTop_toTopOf="@+id/previewView"
+        />
+
     <com.mutablestate.readonline.presentation.view.CustomRectangleView
         android:id="@+id/rectangle_view"
         android:layout_width="wrap_content"
