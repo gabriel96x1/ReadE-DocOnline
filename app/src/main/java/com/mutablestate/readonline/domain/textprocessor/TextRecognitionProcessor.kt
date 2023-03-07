@@ -50,6 +50,7 @@ class TextRecognitionProcessor(
         if (bacKeyParts.docNum.isEmpty() || bacKeyParts.birthDate.isEmpty() || bacKeyParts.expiryDate.isEmpty()) {
 
             alertDialogSetup(graphicOverlay)
+
         } else {
             val intent = Intent(graphicOverlay.context, ReaderActivityKt::class.java)
             intent.putExtra("text", text.text)
@@ -57,6 +58,8 @@ class TextRecognitionProcessor(
             intent.putExtra("birthDate", bacKeyParts.birthDate)
             intent.putExtra("expiryDate", bacKeyParts.expiryDate)
             graphicOverlay.context.startActivity(intent)
+            activity = graphicOverlay.context as Activity
+            activity.finish()
         }
     }
 

@@ -11,8 +11,8 @@
     <string name="take_picture_camera_activity">Tomar fotografìa</string>
     <string name="overlay_camera_activity">Overlay</string>
     <string name="activate_flash_camera_activity">Activar Flash</string>
-    <string name="real_id_results_screen">Comparando la informacion impresa en la identificacion con la contenida en el chip se puede determinar que la identificacion es REAL</string>
-    <string name="false_id_results_screen">Comparando la informacion impresa en la identificacion con la contenida en el chip se puede determinar que la identificacion es FALSA</string>
+    <string name="real_id_results_screen">Impresion vs informacion en chip: identificacion REAL</string>
+    <string name="false_id_results_screen">Impresion vs informacion en chip: identificacion FALSA</string>
     <string name="nationality_results_screen">Nacionalidad: </string>
     <string name="gender_results_screen">Genero: </string>
     <string name="secondary_id_results_screen">Identificador secundario: </string>
@@ -29,6 +29,7 @@
     <string name="follow_recommendations_dialog" translatable="false">Trata de seguir la siguientes recomendaciones:</string>
     <string name="something_wrong_dialog" translatable="false">Algo salio mal analizando tu imagen</string>
     <string name="ok_button_dialog" translatable="false">Ok</string>
+    <string name="back_to_start_results_screen" translatable="false">Volver a patalla de inicio</string>
 
     <string name="pref_key_info_hide" translatable="false">ih</string>
     <string name="pref_key_group_recognized_text_in_blocks" translatable="false">grtib</string>

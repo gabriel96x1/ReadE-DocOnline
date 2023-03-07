@@ -79,7 +79,7 @@ class ReaderActivityKt : ComponentActivity() {
             val readingState = viewModel.readingState.observeAsState().value
 
             Scaffold(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             ) {
                 ReadOnlineTheme {
 
@@ -93,7 +93,8 @@ class ReaderActivityKt : ComponentActivity() {
                         ReadingNFCEvent.ENDREAD -> {
                             ResultsScreen(
                                 setState(readingState),
-                                mlkitText
+                                mlkitText,
+                                this
                             )
                             Log.d("ReadInfoComplete", setState(readingState).toString())
                         }

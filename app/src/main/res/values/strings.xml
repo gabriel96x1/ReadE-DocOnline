@@ -9,8 +9,8 @@
     <string name="take_picture_camera_activity">Take Picture</string>
     <string name="overlay_camera_activity">Overlay</string>
     <string name="activate_flash_camera_activity">Activate Flash</string>
-    <string name="real_id_results_screen">Comparing printed information with chip information this ID is REAL</string>
-    <string name="false_id_results_screen">Comparing printed information with chip information this ID is FALSE</string>
+    <string name="real_id_results_screen">Printed vs in Chip Information: ID is REAL</string>
+    <string name="false_id_results_screen">Printed vs in Chip Information: ID is FALSE</string>
     <string name="nationality_results_screen">Nationality: </string>
     <string name="gender_results_screen">Gender: </string>
     <string name="secondary_id_results_screen">Secondary ID: </string>
@@ -27,6 +27,7 @@
     <string name="follow_recommendations_dialog" translatable="false">Try to follow the next recommendations:</string>
     <string name="something_wrong_dialog" translatable="false">Something went wrong analyzing your image</string>
     <string name="ok_button_dialog" translatable="false">Ok</string>
+    <string name="back_to_start_results_screen" translatable="false">Back to initial screen</string>
 
     <string name="pref_key_info_hide" translatable="false">ih</string>
     <string name="pref_key_group_recognized_text_in_blocks" translatable="false">grtib</string>
