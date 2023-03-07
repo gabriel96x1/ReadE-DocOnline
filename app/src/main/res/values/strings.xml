@@ -36,21 +36,6 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
-    <string name="seleccion_de_beneficio">Seleccion de beneficio</string>
-    <string name="ingrese_pin_actual">PIN actual</string>
-    <string name="pin_nuevo">PIN nuevo</string>
-    <string name="change_pin">Cambiar PIN</string>
-    <string name="gift_message">Se cargará a la tarjeta la oportunidad de redimir uno de los siguientes regalos:</string>
-    <string name="gift1">Una Pluma</string>
-    <string name="gift2">Una Libreta</string>
-    <string name="gift3">Un USB</string>
-    <string name="gift4">Un Tarjetero</string>
-    <string name="btn_carga_cedula">Cargar beneficios a cédula</string>
-    <string name="reading_id">Lectura de cédula</string>
-
     <string name="java_entry_title" translatable="false">Run the ML Kit quickstart written in Java</string>
     <string name="kotlin_entry_title" translatable="false">Run the ML Kit quickstart written in Kotlin</string>
     <string name="ok" translatable="false">OK</string>
@@ -199,5 +184,20 @@
     <!-- Strings for segmentation preference. -->
     <string name="pref_title_segmentation_raw_size_mask" translatable="false">Enable raw size mask</string>
     <string name="pref_key_segmentation_raw_size_mask" translatable="false">srsm</string>
+    <string name="take_picture_camera_activity">Take Picture</string>
+    <string name="overlay_camera_activity">Overlay</string>
+    <string name="activate_flash_camera_activity">Activate Flash</string>
+    <string name="real_id_results_screen">Comparing printed information with chip information this ID is REAL</string>
+    <string name="false_id_results_screen">Comparing printed information with chip information this ID is FALSE</string>
+    <string name="nationality_results_screen">\"Nationality: \"</string>
+    <string name="gender_results_screen">\"Gender: \"</string>
+    <string name="scondary_id_results_screen">\"Secondary ID: \"</string>
+    <string name="primary_id_results_screen">\"Primary ID: \"</string>
+    <string name="photo_description_results_screen">User Image</string>
+    <string name="to_nfc_settings_hold_close_doc_screen">To NFC Settings</string>
+    <string name="dialog_text_hold_close_doc_screen">To continue you need to enable your NFC</string>
+    <string name="nfc_icon_description_hold_close_doc_screen">Approach your electronic document</string>
+    <string name="hold_close_doc_string_hold_close_doc_screen">Hold your ID close to the back of your device</string>
+    <string name="reading_id_message_analyzing_info_screen">Reading your ID, please wait.</string>
 
 </resources>

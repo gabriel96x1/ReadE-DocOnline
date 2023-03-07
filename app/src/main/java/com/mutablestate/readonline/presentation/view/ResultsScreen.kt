@@ -7,8 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.mutablestate.readonline.R
 import com.mutablestate.readonline.domain.models.UserChipInfo
 import com.mutablestate.readonline.domain.utils.ReadingUtils
 
@@ -22,34 +24,34 @@ fun ResultsScreen(chipInfo: UserChipInfo?, mlkitText: String?) {
     ) {
         Image(
             bitmap = chipInfo.photo.asImageBitmap(),
-            contentDescription = ""
+            contentDescription = stringResource(R.string.photo_description_results_screen)
         )
         Spacer(modifier = Modifier.height(12.dp))
         Row {
-            Text(text = "Primary ID: ")
+            Text(text = stringResource(R.string.primary_id_results_screen))
             Text(text = chipInfo.primaryId)
         }
         Spacer(modifier = Modifier.height(12.dp))
         Row {
-            Text(text = "Secondary ID: ")
+            Text(text = stringResource(R.string.scondary_id_results_screen))
             Text(text = chipInfo.secondId)
         }
         Spacer(modifier = Modifier.height(12.dp))
         Row {
-            Text(text = "Gender: ")
+            Text(text = stringResource(R.string.gender_results_screen))
             Text(text = chipInfo.gender)
         }
         Spacer(modifier = Modifier.height(12.dp))
         Row {
-            Text(text = "Nationality: ")
+            Text(text = stringResource(R.string.nationality_results_screen))
             Text(text = chipInfo.nationality)
         }
         Spacer(modifier = Modifier.height(12.dp))
         Row {
             Text(
-                text = if(isReal) "Comparing printed information with chip information this ID is REAL"
-                else "Comparing printed information with chip information this ID is FALSE",
-                textAlign = TextAlign.Justify
+                text = if(isReal) stringResource(R.string.real_id_results_screen)
+                else stringResource(R.string.false_id_results_screen),
+                textAlign = TextAlign.Center
             )
         }
     }

@@ -17,6 +17,7 @@ import com.mutablestate.readonline.presentation.activities.CameraActivity
 @Composable
 fun InstructionsScreen() {
     val context = LocalContext.current
+    //TODO: Extract to string resources once UX/IU is defined for this screen
     Column(
         modifier = Modifier
             .fillMaxSize()

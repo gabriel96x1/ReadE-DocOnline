@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,14 +43,14 @@ fun HoldCloseDocScreen() {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Hold your ID close to the back of your device",
+            text = stringResource(R.string.hold_close_doc_string_hold_close_doc_screen),
             fontSize = 20.sp,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(40.dp))
         Icon(
             painter = painterResource(id = R.drawable.nfc),
-            contentDescription = "NFC",
+            contentDescription = stringResource(R.string.nfc_icon_description_hold_close_doc_screen),
             modifier = Modifier.size(60.dp)
         )
     }
@@ -71,7 +72,7 @@ fun NFCDialog(nfcAdapter: MutableState<Boolean>, context: Context) {
                 .padding(30.dp)
         ) {
             Text(
-                text = "Hey there, to continue you need enable your NFC before",
+                text = stringResource(R.string.dialog_text_hold_close_doc_screen),
                 textAlign = TextAlign.Justify
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -83,7 +84,7 @@ fun NFCDialog(nfcAdapter: MutableState<Boolean>, context: Context) {
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "To NFC Settings")
+                Text(text = stringResource(R.string.to_nfc_settings_hold_close_doc_screen))
             }
         }
     }
