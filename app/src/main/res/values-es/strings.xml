@@ -23,6 +23,12 @@
     <string name="nfc_icon_description_hold_close_doc_screen">Aproxima tu documento electronico</string>
     <string name="hold_close_doc_string_hold_close_doc_screen">Aceca tu identificacion por detras de tu dispositivo</string>
     <string name="reading_id_message_analyzing_info_screen">Leyendo identificacion, por favor espere.</string>
+    <string name="recommendation3_dialog" translatable="false">- Intenta tomar las letras lo mas claro posibles.</string>
+    <string name="recommendation2_dialog" translatable="false">- Centra tu identificacion en el rectangulo blanco.</string>
+    <string name="recommendation1_dialog" translatable="false">- Busca un lugar con buena iluminacion.</string>
+    <string name="follow_recommendations_dialog" translatable="false">Trata de seguir la siguientes recomendaciones:</string>
+    <string name="something_wrong_dialog" translatable="false">Algo salio mal analizando tu imagen</string>
+    <string name="ok_button_dialog" translatable="false">Ok</string>
 
     <string name="pref_key_info_hide" translatable="false">ih</string>
     <string name="pref_key_group_recognized_text_in_blocks" translatable="false">grtib</string>

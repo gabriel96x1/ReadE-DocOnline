@@ -21,10 +21,17 @@
     <string name="nfc_icon_description_hold_close_doc_screen">Approach your electronic document</string>
     <string name="hold_close_doc_string_hold_close_doc_screen">Hold your ID close to the back of your device</string>
     <string name="reading_id_message_analyzing_info_screen">Reading your ID, please wait.</string>
+    <string name="recommendation3_dialog" translatable="false">- Try to take the most clear possible all the letters.</string>
+    <string name="recommendation2_dialog" translatable="false">- Center your ID inside the white rectangle.</string>
+    <string name="recommendation1_dialog" translatable="false">- Find a place with a good illumination.</string>
+    <string name="follow_recommendations_dialog" translatable="false">Try to follow the next recommendations:</string>
+    <string name="something_wrong_dialog" translatable="false">Something went wrong analyzing your image</string>
+    <string name="ok_button_dialog" translatable="false">Ok</string>
 
     <string name="pref_key_info_hide" translatable="false">ih</string>
     <string name="pref_key_group_recognized_text_in_blocks" translatable="false">grtib</string>
     <string name="pref_key_show_language_tag" translatable="false">slt</string>
     <string name="pref_key_camera_live_viewport" translatable="false">clv</string>
+
 
 </resources>

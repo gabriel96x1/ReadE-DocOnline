@@ -1,55 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="400dp"
+    android:layout_height="350dp"
+    android:padding="40dp"
+    android:layout_gravity="center"
     android:orientation="vertical">
-
-
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/dialog_text"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Something went wrong analyzing your image please try again"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:text="@string/something_wrong_dialog"
         />
 
     <TextView
         android:id="@+id/dialog_text2"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Try to follow the next recommendations: "
+        android:layout_marginTop="24dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="@string/follow_recommendations_dialog"
         />
 
     <TextView
         android:id="@+id/dialog_text_help"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" - Try to find a place with a good illumination"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/black"
+        android:text="@string/recommendation1_dialog"
         />
 
     <TextView
         android:id="@+id/dialog_text_help1"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" - Center your ID inside the white rectangle"
+        android:textColor="@color/black"
+        android:text="@string/recommendation2_dialog"
         />
 
     <TextView
         android:id="@+id/dialog_text_help2"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" - Try to take the most clear possible all the letters"
+        android:textColor="@color/black"
+        android:text="@string/recommendation3_dialog"
         />
 
 
     <Button
         android:id="@+id/dialogButtonOK"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text=" Ok "/>
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:background="@color/teal_200"
+        android:textColor="@color/white"
+        android:text="@string/ok_button_dialog"/>
 
 </LinearLayout>
