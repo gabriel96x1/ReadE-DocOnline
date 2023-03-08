@@ -43,4 +43,8 @@
     <string name="pref_key_show_language_tag" translatable="false">slt</string>
     <string name="pref_key_camera_live_viewport" translatable="false">clv</string>
 
+    <string name="more_inst_inst_screen" translatable="false">More instructions</string>
+    <string name="example_image_inst_screen" translatable="false">Example image</string>
+    <string name="id_image_inst_screen" translatable="false">ID Image</string>
+
 </resources>
