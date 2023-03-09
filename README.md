@@ -1,14 +1,8 @@
-# E-Doc Reader with OCR
+# ReadE-DocOnline AKA ElectronicDocs
 
+Is an Android application that utilizes the Near Field Communication (NFC) chip to read electronic documents such as passports and ID cards that comply with the International Civil Aviation Organization (ICAO) standards.
 
-Android app that uses the NFC chip to read electronic Documents, could be Passport Or ID ICAO Compliant.
-
-
-The following string extras can be set to allow pre-filling of input fields:
-- `passportNumber` - String
-- `dateOfExpiry` - String in format YYYY-MM-DD
-- `dateOfBirth` - String in format YYYY-MM-DD
-- `photoAsBase64` - Boolean indicating whether to return photo as base64 encoded image (default false)
+This app comes with features that allow for pre-filling input fields, such as passport number, date of expiry, and date of birth by taking a photograph of the ID where MRZ is visible. Additionally, the app supports returning the photo as a Base64-encoded image.
 
 Available data keys:
 - `firstName` - String
@@ -17,6 +11,14 @@ Available data keys:
 - `state` - String
 - `nationality` - String
 - `photo` - Bitmap
+
+## Usage
+To use the ReadE-DocOnline/ElectronicDocs app, you will need to have an electronic document that is ICAO compliant and a device capable of use NFC. You can then follow these steps:
+
+- Open the app on your Android device.
+- Take a photograph of your e-passport or e-id where MRZ is visible.
+- Hold the electronic document against the NFC chip on your device.
+- The app will automatically scan the document and display the information contained therein.
 
 ## Contacts
 
