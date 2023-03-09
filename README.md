@@ -16,8 +16,7 @@ Available data keys:
 - `gender` - String
 - `state` - String
 - `nationality` - String
-- `photo` - Bitmap (if `photoAsBase64` is false)
-- `photoBase64` - String (if `photoAsBase64` is true)
+- `photo` - Bitmap
 
 ## Contacts
 
