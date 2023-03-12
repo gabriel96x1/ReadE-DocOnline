@@ -4,14 +4,6 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        debug {
-            storeFile file('/home/gapps/AndroidKeystore/upload-keystore.jks')
-            storePassword 'mainHotDog.'
-            keyAlias 'upload'
-            keyPassword 'mainHotDog.'
-        }
-    }
     namespace 'com.mutablestate.readonline'
     compileSdk 33
 
