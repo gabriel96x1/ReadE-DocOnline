@@ -4,6 +4,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/home/gapps/AndroidKeystore/upload-keystore.jks')
+            storePassword 'mainHotDog.'
+            keyAlias 'upload'
+            keyPassword 'mainHotDog.'
+        }
+    }
     namespace 'com.mutablestate.readonline'
     compileSdk 33
 
@@ -11,8 +19,8 @@ android {
         applicationId "com.mutablestate.readonline"
         minSdk 26
         targetSdk 33
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.0.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -23,9 +31,14 @@ android {
     buildTypes {
         release {
             ndk {
-                debugSymbolLevel 'SYMBOL_TABLE'
+                debugSymbolLevel 'full'
             }
-            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            ndk {
+                debugSymbolLevel 'full'
+            }
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

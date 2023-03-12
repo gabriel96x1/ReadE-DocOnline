@@ -5,11 +5,8 @@ import android.graphics.Bitmap
 import android.nfc.tech.IsoDep
 import android.util.Base64
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.mutablestate.readonline.domain.models.UserChipInfo
 import com.mutablestate.readonline.domain.utils.ImageUtil
-import com.mutablestate.readonline.presentation.activities.ReaderActivityKt
-import com.mutablestate.readonline.presentation.stateflows.ReadingNFCState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.sf.scuba.smartcards.CardService
