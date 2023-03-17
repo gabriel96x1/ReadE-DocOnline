@@ -18,7 +18,6 @@ import com.mutablestate.readonline.domain.textprocessor.ocrinternals.PreferenceU
 import com.mutablestate.readonline.domain.textprocessor.ocrinternals.VisionProcessorBase
 import com.mutablestate.readonline.presentation.activities.ReaderActivityKt
 
-
 class TextRecognitionProcessor(
     context: Context?, textRecognizerOptions: TextRecognizerOptionsInterface?
 ) : VisionProcessorBase<Text?>(context) {

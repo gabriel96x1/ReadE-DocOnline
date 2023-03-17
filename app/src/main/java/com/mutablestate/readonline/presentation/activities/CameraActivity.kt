@@ -1,6 +1,5 @@
 package com.mutablestate.readonline.presentation.activities
 
-import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle

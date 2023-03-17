@@ -25,8 +25,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.core.content.ContextCompat.startActivity
 import com.mutablestate.readonline.R
-import com.mutablestate.readonline.presentation.composable.TransitionAnimation
-
 
 @Composable
 fun HoldCloseDocScreen() {

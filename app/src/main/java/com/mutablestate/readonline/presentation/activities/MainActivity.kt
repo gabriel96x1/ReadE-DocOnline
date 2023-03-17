@@ -14,7 +14,6 @@ import androidx.core.app.ActivityCompat
 import com.mutablestate.readonline.presentation.view.InstructionsScreen
 import com.mutablestate.readonline.ui.theme.ReadOnlineTheme
 
-
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {

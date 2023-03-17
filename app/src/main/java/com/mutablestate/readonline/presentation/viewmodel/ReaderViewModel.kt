@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mutablestate.readonline.domain.models.UserChipInfo
 import com.mutablestate.readonline.domain.nfcreading.NFCReadingProcess
 import com.mutablestate.readonline.presentation.stateflows.ReadingNFCEvent
 import com.mutablestate.readonline.presentation.stateflows.ReadingNFCState

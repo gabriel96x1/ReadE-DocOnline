@@ -1,10 +1,8 @@
 package com.mutablestate.readonline.domain.textprocessor
 
 import android.util.Log
-import androidx.compose.ui.text.toUpperCase
 import com.google.mlkit.vision.text.Text
 import com.mutablestate.readonline.domain.models.BacKeyParts
-import java.util.*
 import kotlin.collections.ArrayList
 
 fun Text.toBacKeys(): BacKeyParts {
