@@ -46,5 +46,7 @@
     <string name="more_inst_inst_screen" translatable="false">More instructions</string>
     <string name="example_image_inst_screen" translatable="false">Example image</string>
     <string name="id_image_inst_screen" translatable="false">ID Image</string>
+    <string name="analyze_screen_lost_tag" translatable="false">Document TAG lost, please don\'t move your document while is read.</string>
+    <string name="analyze_screen_lost_tag_btn" translatable="false">OK</string>
 
 </resources>

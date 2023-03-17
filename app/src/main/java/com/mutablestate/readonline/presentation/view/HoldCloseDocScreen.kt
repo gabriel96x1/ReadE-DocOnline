@@ -61,7 +61,7 @@ fun HoldCloseDocScreen() {
 }
 
 @Composable
-fun NFCDialog(nfcAdapter: MutableState<Boolean>, context: Context) {
+private fun NFCDialog(nfcAdapter: MutableState<Boolean>, context: Context) {
     Dialog(
         onDismissRequest = { nfcAdapter.value = true }
     ) {
@@ -88,5 +88,4 @@ fun NFCDialog(nfcAdapter: MutableState<Boolean>, context: Context) {
             }
         }
     }
-
 }

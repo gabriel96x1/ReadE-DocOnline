@@ -49,4 +49,7 @@
     <string name="example_image_inst_screen" translatable="false">Imagen de ejemplo</string>
     <string name="id_image_inst_screen" translatable="false">Imagen de identificacion</string>
 
+    <string name="analyze_screen_lost_tag" translatable="false">Documento NFC perdido, trata de no mover el documento mientras se realiza la lectura.</string>
+    <string name="analyze_screen_lost_tag_btn" translatable="false">OK</string>
+
 </resources>

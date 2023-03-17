@@ -88,7 +88,11 @@ class ReaderActivityKt : ComponentActivity() {
                             HoldCloseDocScreen()
                         }
                         ReadingNFCEvent.READING -> {
-                            AnalyzingInfoScreen()
+                            AnalyzingInfoScreen(
+                                viewModel.tagLost
+                            ) {
+                                viewModel.resetTagLostState()
+                            }
                         }
                         ReadingNFCEvent.ENDREAD -> {
                             ResultsScreen(
