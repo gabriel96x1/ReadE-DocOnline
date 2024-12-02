@@ -12,7 +12,13 @@ dependencyResolutionManagement {
         mavenCentral()
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.google.com'}
+        maven {
+            url("https://jcenter.bintray.com/")
+        }
     }
 }
 rootProject.name = "readOnline"
 include ':app'
+include ':jp2-android'

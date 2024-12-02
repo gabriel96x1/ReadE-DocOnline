@@ -21,9 +21,12 @@ import org.jmrtd.PassportService
 import org.jmrtd.lds.ChipAuthenticationPublicKeyInfo
 import org.jmrtd.lds.SODFile
 import org.jmrtd.lds.SecurityInfo
+import org.jmrtd.lds.icao.DG11File
+import org.jmrtd.lds.icao.DG12File
 import org.jmrtd.lds.icao.DG14File
 import org.jmrtd.lds.icao.DG1File
 import org.jmrtd.lds.icao.DG2File
+import org.jmrtd.lds.icao.DG7File
 import org.jmrtd.lds.iso19794.FaceImageInfo
 import org.jmrtd.lds.iso19794.FaceInfo
 import java.io.ByteArrayInputStream
@@ -47,6 +50,9 @@ class NFCReadingProcess(
     private val TAG = NFCReadingProcess::class.java.simpleName
     private lateinit var dg1File: DG1File
     private lateinit var dg2File: DG2File
+    private lateinit var dg7File: DG7File
+    private var dg11File: DG11File? = null
+    private lateinit var dg12File: DG12File
     private lateinit var dg14File: DG14File
     private lateinit var sodFile: SODFile
     private lateinit var imageBase64: String
@@ -193,6 +199,20 @@ class NFCReadingProcess(
         val dg2In = service.getInputStream(PassportService.EF_DG2)
         dg2File = DG2File(dg2In)
 
+        val dg7In = service.getInputStream(PassportService.EF_DG7)
+        dg7File = DG7File(dg7In)
+
+        val dg11In = service.getInputStream(PassportService.EF_DG11)
+        try {
+            dg11File = DG11File(dg11In)
+        } catch (e: Exception) {
+            dg11File = null
+            Log.d(this.TAG, e.message.toString())
+        }
+
+        val dg12In = service.getInputStream(PassportService.EF_DG12)
+        dg12File = DG12File(dg12In)
+
         val sodIn = service.getInputStream(PassportService.EF_SOD)
         sodFile = SODFile(sodIn)
 
@@ -228,6 +248,7 @@ class NFCReadingProcess(
 
     private fun postReadingTask(): UserChipInfo {
         val mrzInfo = dg1File.mrzInfo
+        val extraInfo = dg11File
 
         val passiveAuthStr = if (passiveAuthSuccess) {
             "passed"
@@ -257,7 +278,10 @@ class NFCReadingProcess(
             mrzInfo.dateOfExpiry,
             passiveAuthStr,
             chipAuthStr,
-            photo
+            photo,
+            extraInfo,
+            dg7File,
+            dg12File
         )
     }
 

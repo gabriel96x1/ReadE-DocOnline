@@ -1,0 +1,1 @@
+/Users/gabs/Documents/Github/ReadE-DocOnline/jp2-android/CMakeLists.txt

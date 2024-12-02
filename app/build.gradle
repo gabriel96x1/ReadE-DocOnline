@@ -11,8 +11,8 @@ android {
         applicationId "com.mutablestate.readonline"
         minSdk 26
         targetSdk 33
-        versionCode 5
-        versionName "1.0.4"
+        versionCode 6
+        versionName "1.0.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -74,6 +74,7 @@ dependencies {
     implementation 'androidx.camera:camera-view:1.2.1'
     implementation 'androidx.camera:camera-lifecycle:1.2.1'
     implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation project(':jp2-android')
 
 
     //testing
@@ -89,7 +90,7 @@ dependencies {
     implementation 'net.sf.scuba:scuba-sc-android:0.0.18'
     implementation "com.google.guava:guava:28.1-android"
     implementation 'com.madgag.spongycastle:prov:1.54.0.0'
-    implementation 'com.gemalto.jp2:jp2-android:1.0.3'
+    //implementation 'com.gemalto.jp2:jp2-android:1.0.3'
     implementation 'com.github.mhshams:jnbis:1.1.0'
     implementation 'org.bouncycastle:bcpkix-jdk15on:1.65'
     implementation 'commons-io:commons-io:2.8.0'
